@@ -18,6 +18,7 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    # Service containers to run with `runner-job`
     services:
       # Label used to access the service container
       redis:
@@ -29,6 +30,9 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          # Maps port 6379 on service container to the host
+          - 6379:6379
 
     steps:
       - uses: actions/checkout@v4
